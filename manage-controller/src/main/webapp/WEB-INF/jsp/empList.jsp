@@ -48,6 +48,20 @@
         });
     </script>
 
+    <script>
+        function deleteConfirm(empid){
+            if(confirm("你真的要删除吗?")){  //询问
+                //发送ajax请求
+                $.get("empDelete/"+empid,function (data) {
+                    var n = data;
+                    if(n=="删除成功"){
+                        window.location.href="showEmpList/1";
+                    }
+                })
+            }
+
+        }
+    </script>
 </head>
 
 <body>
@@ -130,7 +144,8 @@
                 <td>
                     <a href="goEmpInfo/${emp.empid}" class="tablelink">查看</a>
                     <a href="empUpdateBefore/${emp.empid}" class="tablelink">修改</a>
-                    <a href="empDelete/${emp.empid}" class="tablelink click"> 删除</a>
+
+                    <a href="javascript:void(0)" class="tablelink click" onclick="deleteConfirm('${emp.empid}')"> 删除</a>
                     <a href="resetPassword/${emp.empid}" class="tablelink"> 重置密码</a>
                 </td>
             </tr>
@@ -159,26 +174,6 @@
 
             <li class="paginItem"><a href="javascript:;"><span class="pagenxt"></span></a></li>
         </ul>
-    </div>
-
-    <div class="tip">
-        <div class="tiptop"><span>提示信息</span>
-            <a></a>
-        </div>
-
-        <div class="tipinfo">
-            <span><img src="images/ticon.png" /></span>
-            <div class="tipright">
-                <p>是否确认对信息的修改 ？</p>
-                <cite>如果是请点击确定按钮 ，否则请点取消。</cite>
-            </div>
-        </div>
-
-        <div class="tipbtn">
-            <input name="" type="button" class="sure" value="确定" />&nbsp;
-            <input name="" type="button" class="cancel" value="取消" />
-        </div>
-
     </div>
 
 </div>
